@@ -1,10 +1,13 @@
-import bcryptjs from "bcryptjs";
-import jwt from "jsonwebtoken";
-import config from "../../shared/config/index.js";
-import db from "../../db/index.js";
-import { NotFoundError, UnauthorizedError } from "../../shared/errors/index.js";
+const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("../../shared/config/index");
+const db = require("../../db/index");
+const {
+  NotFoundError,
+  UnauthorizedError,
+} = require("../../shared/error/index");
 
-export const loginUser = async ({ username, password }) => {
+module.exports.login = async ({ username, password }) => {
   const existing = await db("users")
     .where({ username, is_deleted: false })
     .first();

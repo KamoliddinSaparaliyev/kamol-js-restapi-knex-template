@@ -1,8 +1,8 @@
-import db from "../../db/index.js";
-import bcryptjs from "bcryptjs";
-import { NotFoundError } from "../../shared/errors/index.js";
+const db = require("../../db/index");
+const bcryptjs = require("bcryptjs");
+const { NotFoundError } = require("../../shared/error");
 
-export const editUser = async ({ id, ...changes }) => {
+module.exports.editUser = async ({ id, ...changes }) => {
   const user = await db("users").where({ id, is_deleted: false }).first();
 
   if (!user) throw new NotFoundError("User not found");

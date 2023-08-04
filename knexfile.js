@@ -2,7 +2,7 @@
 const config = require("./src/shared/config");
 
 /**
- * @type { Object.<string, import("knex").Knex.Config> }
+ * @type { Object.<string, const("knex").Knex.Config> }
  */
 module.exports = {
   development: {

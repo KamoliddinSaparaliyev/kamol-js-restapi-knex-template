@@ -1,7 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
-const { UnauthorizedError, ForbiddenError } = require("../error");
+const { UnauthorizedError } = require("../error");
 
 /**
  * Login qilganligini tekshirish uchun
@@ -9,7 +9,7 @@ const { UnauthorizedError, ForbiddenError } = require("../error");
  * @param {express.Response} res
  * @param {express.NextFunction} next
  */
-const isLoggedInAndAdminAndAdmin = (req, res, next) => {
+const isLoggedIn = (req, res, next) => {
   try {
     const { authorization: token } = req.headers;
 
@@ -19,11 +19,7 @@ const isLoggedInAndAdminAndAdmin = (req, res, next) => {
 
     const decoded = jwt.verify(token, config.jwt.secret);
 
-    if (!decoded.role == "admin") {
-      throw new ForbiddenError("Ruhsat yo'q");
-    }
-
-    req.user = { id: decoded.id, role: decoded.role };
+    req.user = { id: decoded.id };
 
     next();
   } catch (error) {
@@ -31,4 +27,4 @@ const isLoggedInAndAdminAndAdmin = (req, res, next) => {
   }
 };
 
-module.exports = isLoggedInAndAdminAndAdmin;
+module.exports = isLoggedIn;

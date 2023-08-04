@@ -1,7 +1,7 @@
-import db from "../../db/index.js";
-import { BadRequestError } from "../../shared/errors/index.js";
+const db = require("../../db/index");
+const { BadRequestError } = require("../../shared/error");
 
-export const listUsers = async (query) => {
+module.exports.listUsers = async (query) => {
   const {
     q,
     offset = 0,
@@ -43,6 +43,6 @@ export const listUsers = async (query) => {
       },
     };
   } catch (error) {
-    throw new BadRequestError("Error fetching users from the database.");
+    throw new BadRequestError("Error fetching users = require( the database.");
   }
 };

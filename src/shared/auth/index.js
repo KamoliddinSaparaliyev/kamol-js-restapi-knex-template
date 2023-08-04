@@ -1,3 +1,3 @@
-const isLoggedInAndAdmin = require("./is-logged-in-and-admin");
+const isLoggedIn = require("./is-logged-in");
 
-module.exports = { isLoggedInAndAdmin };
+module.exports = { isLoggedIn };
